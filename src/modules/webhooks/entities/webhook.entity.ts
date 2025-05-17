@@ -1,3 +1,10 @@
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity()
 export class Webhook {
-  data: any;
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  informacion: Object;
 }

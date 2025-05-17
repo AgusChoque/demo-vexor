@@ -2,28 +2,20 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Webhook } from './entities/webhook.entity';
 import { Repository } from 'typeorm';
+import { vexor } from 'src/config/vexor.config';
 
 @Injectable()
 export class WebhooksService {
   constructor(@InjectRepository(Webhook) private readonly webhookRepository: Repository<Webhook>) {}
 
   async handleRenovate(req: Request) {
-    console.log('Received Renovate webhook:', req.body);
-    const webhook = await this.webhookRepository.create({
-      data: req.body,
-    });
-    await this.webhookRepository.save(webhook);
-    return {
-      status: 'success',
-      message: 'Webhook received and saved successfully',
-    };
-  }
+    console.log('Request:', req);
 
-  async getWebhooks() {
-    const webhooks = await this.webhookRepository.find();
+    console.log('Received Renovate webhook:', req.body);
+
     return {
       status: 'success',
-      data: webhooks,
+      data: req.body,
     };
   }
 }

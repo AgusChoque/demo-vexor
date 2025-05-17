@@ -10,10 +10,4 @@ export class WebhooksController {
   async handleRenovate(@Req() req: Request) {
     return await this.webhooksService.handleRenovate(req);
   }
-
-  @Get()
-  @HttpCode(200)
-  async getWebhooks() {
-    return await this.webhooksService.getWebhooks();
-  }
 }
