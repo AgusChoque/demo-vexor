@@ -6,5 +6,5 @@ export class Webhook {
   id: number;
 
   @Column()
-  informacion: Object;
+  informacion: string;
 }
