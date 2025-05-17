@@ -8,6 +8,7 @@ export class WebhooksService {
   constructor(@InjectRepository(Webhook) private readonly webhookRepository: Repository<Webhook>) {}
 
   async handleRenovate(req: Request) {
+    console.log('Received Renovate webhook:', req.body);
     const webhook = await this.webhookRepository.create({
       data: req.body,
     });
