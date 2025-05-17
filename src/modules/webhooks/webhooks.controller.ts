@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Post, Req } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post, Req } from '@nestjs/common';
 import { WebhooksService } from './webhooks.service';
 
 @Controller('webhooks')
@@ -8,6 +8,12 @@ export class WebhooksController {
   @Post('renovate')
   @HttpCode(200)
   async handleRenovate(@Req() req: Request) {
-    return this.webhooksService.handleRenovate(req);
+    return await this.webhooksService.handleRenovate(req);
+  }
+
+  @Get()
+  @HttpCode(200)
+  async getWebhooks() {
+    return await this.webhooksService.getWebhooks();
   }
 }

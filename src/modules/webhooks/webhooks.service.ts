@@ -18,4 +18,12 @@ export class WebhooksService {
       message: 'Webhook received and saved successfully',
     };
   }
+
+  async getWebhooks() {
+    const webhooks = await this.webhookRepository.find();
+    return {
+      status: 'success',
+      data: webhooks,
+    };
+  }
 }
