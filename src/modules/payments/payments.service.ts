@@ -8,12 +8,16 @@ export class PaymentsService {
     const response: VexorSubscriptionResponse = await vexor.subscribe({
       name: 'Premium Subscription',
       description: 'Premium subscription for Vexor',
-      price: 10,
-      currency: 'usd',
+      price: 15,
+      currency: 'ARS',
       interval: 'month',
       platform: 'mercadopago',
       successRedirect: successUrl,
       failureRedirect: failureUrl,
+      customer: {
+        email,
+        name,
+      },
     });
 
     return response;
