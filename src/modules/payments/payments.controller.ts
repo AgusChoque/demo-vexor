@@ -2,6 +2,7 @@ import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { PaymentsService } from './payments.service';
 import { CreateSubDto } from 'src/dto/createSub.dto';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { VexorRefundBody } from 'vexor';
 
 @ApiTags('Payments')
 @Controller('payments')
@@ -43,5 +44,22 @@ export class PaymentsController {
   @HttpCode(200)
   async createPortal(@Body() body: { returnUrl: string; identifier: string }) {
     return await this.paymentsService.createPortal(body);
+  }
+
+  @ApiBody({
+    description: 'Create a subscription',
+    type: Object,
+    examples: {
+      Agustin: {
+        value: {
+          identifier: 'identifier',
+        },
+      },
+    },
+  })
+  @Post('refund')
+  @HttpCode(200)
+  async createRefund(@Body() body: VexorRefundBody) {
+    return await this.paymentsService.createRefund(body);
   }
 }

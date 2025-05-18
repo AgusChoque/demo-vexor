@@ -32,4 +32,13 @@ export class PaymentsService {
 
     return response;
   }
+
+  async createRefund({ identifier }) {
+    const response = await vexor.refund({
+      platform: 'mercadopago',
+      identifier,
+    });
+
+    return response;
+  }
 }
