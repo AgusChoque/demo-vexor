@@ -19,6 +19,15 @@ export class PaymentsService {
         name,
       },
     });
+    const { raw, ...responseNew } = response;
+    return responseNew;
+  }
+
+  async createPortal({ returnUrl, identifier }) {
+    const response = await vexor.createPortal('mercadopago', {
+      returnUrl,
+      identifier,
+    });
 
     return response;
   }

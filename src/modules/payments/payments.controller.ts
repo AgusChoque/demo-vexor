@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { PaymentsService } from './payments.service';
 import { CreateSubDto } from 'src/dto/createSub.dto';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
@@ -25,5 +25,11 @@ export class PaymentsController {
   @Post('subscribe')
   async createPremiumSubscribe(@Body() body: CreateSubDto) {
     return await this.paymentsService.createPremiumSubscribe(body);
+  }
+
+  @Post('portal')
+  @HttpCode(200)
+  async createPortal(@Body() body: { returnUrl: string; identifier: string }) {
+    return await this.paymentsService.createPortal(body);
   }
 }
