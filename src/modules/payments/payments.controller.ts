@@ -27,6 +27,18 @@ export class PaymentsController {
     return await this.paymentsService.createPremiumSubscribe(body);
   }
 
+  @ApiBody({
+    description: 'Create a subscription',
+    type: Object,
+    examples: {
+      Agustin: {
+        value: {
+          returnUrl: 'https://vexordemo.com/success',
+          identifier: 'identifier',
+        },
+      },
+    },
+  })
   @Post('portal')
   @HttpCode(200)
   async createPortal(@Body() body: { returnUrl: string; identifier: string }) {
