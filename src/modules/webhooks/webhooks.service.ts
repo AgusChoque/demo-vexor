@@ -11,9 +11,6 @@ export class WebhooksService {
   async handleRenovate(req: Request) {
     console.log('Received Renovate webhook:', req.body);
 
-    const nose = await vexor.handleWebhook(req);
-    console.log('Nose:', nose);
-
     return {
       status: 'success',
       data: req.body,
