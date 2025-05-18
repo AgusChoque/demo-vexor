@@ -9,9 +9,10 @@ export class WebhooksService {
   constructor(@InjectRepository(Webhook) private readonly webhookRepository: Repository<Webhook>) {}
 
   async handleRenovate(req: Request) {
-    console.log('Request:', req);
-
     console.log('Received Renovate webhook:', req.body);
+
+    const nose = await vexor.handleWebhook(req);
+    console.log('Nose:', nose);
 
     return {
       status: 'success',
