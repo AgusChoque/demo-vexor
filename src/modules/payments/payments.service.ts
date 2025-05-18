@@ -24,7 +24,8 @@ export class PaymentsService {
   }
 
   async createPortal({ returnUrl, identifier }) {
-    const response = await vexor.createPortal('mercadopago', {
+    const response = await vexor.portal({
+      platform: 'mercadopago',
       returnUrl,
       identifier,
     });
